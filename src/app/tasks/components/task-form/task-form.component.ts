@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 import { TaskModel } from './../../models/task.model';
 import { TaskArrayService } from './../../services/task-array.service';
@@ -10,10 +12,22 @@ import { TaskArrayService } from './../../services/task-array.service';
 export class TaskFormComponent implements OnInit {
   task: TaskModel;
 
-  constructor(private taskArrayService: TaskArrayService) {}
+  constructor(
+    private taskArrayService: TaskArrayService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.task = new TaskModel();
+
+    this.route.paramMap
+      .pipe(
+        switchMap((params: Params) => this.taskArrayService.getTask(+params.get('taskID'))))
+      .subscribe(
+        task => this.task = {...task},
+        err => console.log(err)
+      );
   }
 
   onSaveTask() {
@@ -24,7 +38,11 @@ export class TaskFormComponent implements OnInit {
     } else {
       this.taskArrayService.createTask(task);
     }
+
+    this.onGoBack();
   }
 
-  onGoBack(): void {}
+  onGoBack(): void {
+    this.router.navigate(['/home']);
+  }
 }

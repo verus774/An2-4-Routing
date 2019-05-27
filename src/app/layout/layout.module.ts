@@ -1,12 +1,20 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
-import { AboutComponent, PathNotFoundComponent } from './components';
+import {AboutComponent, PathNotFoundComponent, MessagesComponent, LoginComponent} from './components';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
   ],
-  declarations: [AboutComponent, PathNotFoundComponent]
+  declarations: [
+    AboutComponent,
+    PathNotFoundComponent,
+    LoginComponent,
+    MessagesComponent,
+  ]
 })
-export class LayoutModule { }
+export class LayoutModule {
+}
