@@ -9,8 +9,7 @@ import { LayoutModule } from './layout/layout.module';
 import { AppRoutingModule } from './app-routing.module';
 import { TasksModule } from './tasks/tasks.module';
 import { CoreModule } from './core/core.module';
-import {UsersModule} from './users/users.module';
-import { AdminModule } from './admin/admin.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,8 +20,7 @@ import { AdminModule } from './admin/admin.module';
     FormsModule,
     LayoutModule,
     CoreModule,
-    AdminModule,
-    UsersModule,
+    SharedModule,
     TasksModule,
     AppRoutingModule,
   ],
